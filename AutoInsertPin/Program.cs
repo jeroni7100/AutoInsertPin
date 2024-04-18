@@ -49,9 +49,12 @@ namespace AutoInsertPin
                     var okControl = window.FindFirst(TreeScope.Descendants, new PropertyCondition(AutomationElement.NameProperty, "OK"));
                     if (okControl == null)
                         continue;
-
-                    Mouse.MoveTo(new System.Drawing.Point((int)okControl.GetClickablePoint().X, (int)okControl.GetClickablePoint().Y));
-                    Mouse.Click(MouseButton.Left);
+                    
+                    SendKeys.SendWait("{ENTER}");
+                    await Task.Delay(250);
+                    
+                    // Mouse.MoveTo(new System.Drawing.Point((int)okControl.GetClickablePoint().X, (int)okControl.GetClickablePoint().Y));
+                    // Mouse.Click(MouseButton.Left);
 
                     await Task.Delay(1000);
                 }
