@@ -10,7 +10,8 @@ namespace AutoInsertPin
     {
         static async Task Main(string[] args)
         {
-            if (args.Length == 0)
+            string pin = args.Length > 0 ? args[0] : System.Environment.GetEnvironmentVariable("AUTOINSERTPIN");
+            if (string.IsNullOrEmpty(pin))
             {
                 Console.Error.WriteLine("Error: Not passed the password as first argument.");
                 return;
@@ -42,7 +43,7 @@ namespace AutoInsertPin
                     await Task.Delay(250);
                     SendKeys.SendWait("{DELETE}");
                     await Task.Delay(250);
-                    SendKeys.SendWait(args[0]);
+                    SendKeys.SendWait(pin);
                     await Task.Delay(250);
 
                     var okControl = window.FindFirst(TreeScope.Descendants, new PropertyCondition(AutomationElement.NameProperty, "OK"));
