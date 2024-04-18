@@ -13,8 +13,16 @@ namespace AutoInsertPin
             string pin = args.Length > 0 ? args[0] : System.Environment.GetEnvironmentVariable("AUTOINSERTPIN");
             if (string.IsNullOrEmpty(pin))
             {
-                Console.Error.WriteLine("Error: Not passed the password as first argument.");
-                return;
+                // get the pin from the user
+                Console.WriteLine("Type PIN: ");
+                pin = Console.ReadLine();
+
+                if (string.IsNullOrEmpty(pin))
+                {
+                    Console.Error.WriteLine("Error: No pin provided.");
+                    return;
+                }
+                
             }
 
             Console.WriteLine("Waiting for windows. Press Ctrl+C to finish monitoring windows...");
