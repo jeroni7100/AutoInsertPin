@@ -42,7 +42,7 @@ namespace AutoInsertPin
 
                     Console.WriteLine("Located window");
 
-                    var editControl = window.FindFirst(TreeScope.Descendants, new PropertyCondition(AutomationElement.NameProperty, "PIN"));
+                    var editControl = window.FindFirst(TreeScope.Descendants, new AndCondition(new PropertyCondition(AutomationElement.NameProperty, "PIN"), new PropertyCondition(AutomationElement.ControlTypeProperty, ControlType.Edit)));
                     if (editControl == null)
                         continue;
 
